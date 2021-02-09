@@ -31,6 +31,10 @@ const App = () => {
 
   // Build a "favorites" box
   const handleClick = (villager) => {
+    let tempData = [...data.hits]
+    let index = tempData.indexOf(villager)
+    tempData.splice(index, 1)
+    setData({hits: tempData})
     if(!favs.includes(villager)){
       setFavs([...favs, villager])
     }
@@ -39,7 +43,7 @@ const App = () => {
     return (
       <div className="App">
         <div className="searchBox">
-          <input type="text" value={search} onChange={handleChange} />
+          <input id="searchBar" type="text" value={search} onChange={handleChange} />
         </div>
         <div>
           <DisplayCards clickie={true} handleClick={handleClick} data={dynamicSearch()}/>
